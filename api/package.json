@@ -11,19 +11,21 @@
     "seed": "node script/seed.js"
   },
   "dependencies": {
-    "@ckeditor/strapi-plugin-ckeditor": "^0.0.7",
-    "@offset-dev/strapi-calendar": "^0.0.10",
-    "@strapi/plugin-graphql": "4.13.5",
-    "@strapi/plugin-i18n": "4.13.5",
-    "@strapi/plugin-seo": "^1.9.4",
-    "@strapi/plugin-users-permissions": "4.13.5",
-    "@strapi/strapi": "4.13.5",
-    "@webbio/strapi-plugin-scheduler": "^0.1.2",
-    "better-sqlite3": "^7.6.2",
-    "fs-extra": "^10.0.0",
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.10",
+    "@offset-dev/strapi-calendar": "^0.1.1",
+    "@strapi/plugin-graphql": "4.16.2",
+    "@strapi/plugin-i18n": "4.16.2",
+    "@strapi/plugin-seo": "^1.9.8",
+    "@strapi/plugin-users-permissions": "4.16.2",
+    "@strapi/strapi": "^4.16.2s",
+    "@webbio/strapi-plugin-scheduler": "^1.0.6",
+    "better-sqlite3": "^9.2.2",
+    "fs-extra": "^11.2.0",
     "pg": "^8.11.3",
-    "strapi-plugin-populate-deep": "^1.1.2",
-    "strapi-plugin-todo": "^0.0.9",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
     "unzip-stream": "^0.3.1",
     "uuid-v4": "^0.1.0"
   },
@@ -34,7 +36,7 @@
     "uuid": "FOODADVISOR-LOCAL-3acbd700-6a32-4183-832b-a7681fb1406e"
   },
   "engines": {
-    "node": ">=14.x.x <=18.x.x",
+    "node": ">=14.x.x <=21.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

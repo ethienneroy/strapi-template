@@ -20,6 +20,7 @@ export function getStrapiURL(path) {
 }
 
 export function handleRedirection(preview, custom) {
+  console.log('getting redirected', custom, preview)
   if (preview) {
     return {
       redirect: {
@@ -60,7 +61,7 @@ export function getData(slug, locale, apiID, kind, preview) {
     const apiUrl = `/${pluralize(
       apiID
     )}?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,restaurants,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`;
-
+    console.log('getData', slug)
     return {
       data: getStrapiURL(apiUrl),
       slug: slugToReturn,

@@ -4,3 +4,5 @@ node_modules/
 foodadvisor.png
 
 .idea/
+
+api/.strapi/
