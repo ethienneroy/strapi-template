@@ -19,8 +19,9 @@ const Cta = ({ title, text, buttons, theme }) => {
                 <Link
                   href={delve(button, 'link.href')}
                   key={`cta-button-${index}`}
+                  target={delve(button, 'link.target')}
                 >
-                  <a target={delve(button, 'link.target')}>
+                  {/*<Link href={delve(button, 'link.target')}>*/}
                     <button
                       type="button"
                       className={`py-4 px-6 bg-${delve(
@@ -39,7 +40,7 @@ const Cta = ({ title, text, buttons, theme }) => {
                     >
                       {delve(button, 'link.label')}
                     </button>
-                  </a>
+                  {/*</Link>*/}
                 </Link>
               </div>
             ))}

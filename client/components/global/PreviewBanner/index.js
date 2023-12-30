@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const PreviewBanner = () => {
   return (
     <div className="px-4 py-4 bg-secondary md:py-4 md:px-4 lg:py-8 lg:px-8 flex items-center justify-center">
@@ -20,9 +21,9 @@ const PreviewBanner = () => {
 
         <p className="max-w-3xl text-lg leading-6 text-white">
           You are in preview mode -
-          <a className="px-2 underline" href={`/api/exit-preview`}>
+          <Link className="px-2 underline" href={`/api/exit-preview`}>
             Turn off to safely browse the website again
-          </a>
+          </Link>
         </p>
       </div>
     </div>

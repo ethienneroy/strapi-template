@@ -7,7 +7,7 @@ const ArticleCard = ({ slug, title, category, seo, locale, author, image }) => {
 
   return (
     <Link href={`/blog/${slug}?lang=${locale}`}>
-      <a>
+      <>
         <div>
           <span className="inline-block py-2 px-2 rounded bg-secondary-lightest text-secondary text-xs font-medium tracking-widest">
             {delve(category, 'data.attributes.name')}
@@ -22,7 +22,7 @@ const ArticleCard = ({ slug, title, category, seo, locale, author, image }) => {
           </h2>
           <p className="leading-relaxed mb-8">{description}</p>
         </div>
-      </a>
+      </>
     </Link>
   );
 };
