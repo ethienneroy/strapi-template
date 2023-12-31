@@ -1089,7 +1089,6 @@ export interface ApiPagePage extends Schema.CollectionType {
     description: '';
   };
   options: {
-    reviewWorkflows: true;
     draftAndPublish: true;
   };
   pluginOptions: {
@@ -1121,9 +1120,11 @@ export interface ApiPagePage extends Schema.CollectionType {
         'blocks.hero',
         'blocks.pricing',
         'blocks.related-articles',
-        'blocks.related-restaurants',
         'blocks.team',
-        'blocks.testimonial'
+        'blocks.testimonial',
+        'blocks.carousel',
+        'blocks.contact-us',
+        'blocks.features-centered'
       ]
     > &
       Attribute.SetPluginOptions<{

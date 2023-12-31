@@ -60,7 +60,7 @@ export function getData(slug, locale, apiID, kind, preview) {
     const slugToReturn = `${prefix}/${slug}?lang=${locale}`;
     const apiUrl = `/${pluralize(
       apiID
-    )}?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,restaurants,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`;
+    )}?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=features,features.icon,slides,slides.image,slides.button,slides.button.link,image,members.picture,header,buttonLabel,general,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`;
     console.log('getData', slug)
     return {
       data: getStrapiURL(apiUrl),

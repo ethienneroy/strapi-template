@@ -1,5 +1,32 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface BlocksCarousel extends Schema.Component {
+  collectionName: 'components_blocks_carousels';
+  info: {
+    displayName: 'Carousel';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    slides: Attribute.Component<'blocks.slide', true>;
+  };
+}
+
+export interface BlocksContactUs extends Schema.Component {
+  collectionName: 'components_blocks_contact_uses';
+  info: {
+    displayName: 'Contact Us';
+    icon: 'envelop';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    senderEmail: Attribute.Email;
+    phoneNumber: Attribute.String;
+    description: Attribute.Text;
+  };
+}
+
 export interface BlocksCtaCommandLine extends Schema.Component {
   collectionName: 'components_blocks_cta_command_lines';
   info: {
@@ -46,6 +73,21 @@ export interface BlocksFaq extends Schema.Component {
   };
 }
 
+export interface BlocksFeaturesCentered extends Schema.Component {
+  collectionName: 'components_blocks_features_centereds';
+  info: {
+    displayName: 'FeaturesCentered';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    subtitle: Attribute.String;
+    description: Attribute.String;
+    features: Attribute.Component<'shared.feature-with-icon', true>;
+  };
+}
+
 export interface BlocksFeaturesWithImages extends Schema.Component {
   collectionName: 'components_slices_features_with_images';
   info: {
@@ -68,6 +110,7 @@ export interface BlocksFeatures extends Schema.Component {
   info: {
     displayName: 'features';
     icon: 'search-plus';
+    description: '';
   };
   attributes: {
     theme: Attribute.Enumeration<['primary', 'secondary', 'muted']> &
@@ -99,6 +142,7 @@ export interface BlocksPricing extends Schema.Component {
   };
   attributes: {
     header: Attribute.Component<'shared.header'>;
+    general: Attribute.Component<'pricing.infos'>;
     pricingCards: Attribute.Component<'pricing.pricing-cards', true>;
   };
 }
@@ -120,15 +164,18 @@ export interface BlocksRelatedArticles extends Schema.Component {
   };
 }
 
-export interface BlocksRelatedRestaurants extends Schema.Component {
-  collectionName: 'components_restaurant_related_restaurants';
+export interface BlocksSlide extends Schema.Component {
+  collectionName: 'components_blocks_slides';
   info: {
-    displayName: 'relatedRestaurants';
-    icon: 'copy';
+    displayName: 'Slide';
+    icon: 'picture';
     description: '';
   };
   attributes: {
-    header: Attribute.Component<'shared.header'>;
+    image: Attribute.Media;
+    title: Attribute.Text;
+    description: Attribute.Text;
+    button: Attribute.Component<'shared.button'>;
   };
 }
 
@@ -146,6 +193,7 @@ export interface BlocksTeam extends Schema.Component {
       'oneToMany',
       'plugin::users-permissions.user'
     >;
+    buttonLabel: Attribute.String;
   };
 }
 
@@ -178,6 +226,8 @@ export interface GlobalFooter extends Schema.Component {
     footerColumns: Attribute.Component<'shared.footer-columns', true>;
     socialNetworks: Attribute.Component<'shared.social-networks', true>;
     button: Attribute.Component<'shared.button'>;
+    terms: Attribute.Component<'shared.link'>;
+    privacy: Attribute.Component<'shared.link'>;
     label: Attribute.String;
   };
 }
@@ -195,6 +245,21 @@ export interface GlobalNavigation extends Schema.Component {
   };
 }
 
+export interface PricingInfos extends Schema.Component {
+  collectionName: 'components_shared_infos';
+  info: {
+    displayName: 'infos';
+    icon: 'adjust';
+  };
+  attributes: {
+    durationLabel: Attribute.String & Attribute.Required;
+    selectLabel: Attribute.String & Attribute.Required;
+    includedlabel: Attribute.String & Attribute.Required;
+    additionalInfos: Attribute.String;
+    currency: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface PricingPerks extends Schema.Component {
   collectionName: 'components_shared_perks';
   info: {
@@ -203,7 +268,6 @@ export interface PricingPerks extends Schema.Component {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    included: Attribute.Boolean & Attribute.Required;
   };
 }
 
@@ -216,19 +280,10 @@ export interface PricingPricingCards extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.String;
+    punchline: Attribute.String;
     price: Attribute.Integer & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
     perks: Attribute.Component<'pricing.perks', true>;
-  };
-}
-
-export interface RestaurantRichContent extends Schema.Component {
-  collectionName: 'components_restaurant_rich_contents';
-  info: {
-    displayName: 'richContent';
-    icon: 'asterisk';
-  };
-  attributes: {
-    content: Attribute.RichText;
   };
 }
 
@@ -251,11 +306,25 @@ export interface SharedCard extends Schema.Component {
   info: {
     displayName: 'card';
     icon: 'sim-card';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
     text: Attribute.String;
     image: Attribute.Media;
+    informations: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          preset: 'rich';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -270,14 +339,32 @@ export interface SharedComment extends Schema.Component {
   };
 }
 
+export interface SharedFeatureWithIcon extends Schema.Component {
+  collectionName: 'components_shared_feature_with_icons';
+  info: {
+    displayName: 'FeatureWithIcon';
+    icon: 'server';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    icon: Attribute.Media;
+    description: Attribute.RichText;
+  };
+}
+
 export interface SharedFeaturesCheck extends Schema.Component {
   collectionName: 'components_shared_features_checks';
   info: {
     displayName: 'featuresCheck';
     icon: 'check';
+    description: '';
   };
   attributes: {
     text: Attribute.String;
+    guestPrice: Attribute.Decimal;
+    memberPrice: Attribute.Decimal;
+    description: Attribute.Text;
   };
 }
 
@@ -304,6 +391,7 @@ export interface SharedHeader extends Schema.Component {
       Attribute.DefaultTo<'primary'>;
     label: Attribute.String;
     title: Attribute.String;
+    description: Attribute.Text;
   };
 }
 
@@ -413,6 +501,7 @@ export interface SharedTeamCard extends Schema.Component {
   info: {
     displayName: 'teamCard';
     icon: 'smile';
+    description: '';
   };
   attributes: {
     fullname: Attribute.String & Attribute.Required;
@@ -425,25 +514,29 @@ export interface SharedTeamCard extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'blocks.carousel': BlocksCarousel;
+      'blocks.contact-us': BlocksContactUs;
       'blocks.cta-command-line': BlocksCtaCommandLine;
       'blocks.cta': BlocksCta;
       'blocks.faq': BlocksFaq;
+      'blocks.features-centered': BlocksFeaturesCentered;
       'blocks.features-with-images': BlocksFeaturesWithImages;
       'blocks.features': BlocksFeatures;
       'blocks.hero': BlocksHero;
       'blocks.pricing': BlocksPricing;
       'blocks.related-articles': BlocksRelatedArticles;
-      'blocks.related-restaurants': BlocksRelatedRestaurants;
+      'blocks.slide': BlocksSlide;
       'blocks.team': BlocksTeam;
       'blocks.testimonial': BlocksTestimonial;
       'global.footer': GlobalFooter;
       'global.navigation': GlobalNavigation;
+      'pricing.infos': PricingInfos;
       'pricing.perks': PricingPerks;
       'pricing.pricing-cards': PricingPricingCards;
-      'restaurant.rich-content': RestaurantRichContent;
       'shared.button': SharedButton;
       'shared.card': SharedCard;
       'shared.comment': SharedComment;
+      'shared.feature-with-icon': SharedFeatureWithIcon;
       'shared.features-check': SharedFeaturesCheck;
       'shared.footer-columns': SharedFooterColumns;
       'shared.header': SharedHeader;

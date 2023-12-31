@@ -16,10 +16,16 @@ const Features = dynamic(() => import('../../blocks/Features'), {
   ssr: true,
 });
 const FeaturesWithImages = dynamic(
-  () => import('../../blocks/FeaturesWithImages'),
-  {
-    ssr: true,
-  }
+    () => import('../../blocks/FeaturesWithImages'),
+    {
+      ssr: true,
+    }
+);
+const FeaturesCentered = dynamic(
+    () => import('../../blocks/FeaturesCentered'),
+    {
+      ssr: true,
+    }
 );
 const Hero = dynamic(() => import('../../blocks/Hero'), {
   ssr: true,
@@ -31,10 +37,10 @@ const RelatedArticles = dynamic(() => import('../../blocks/RelatedArticles'), {
   ssr: true,
 });
 const RelatedRestaurants = dynamic(
-  () => import('../../blocks/RelatedRestaurants'),
-  {
-    ssr: true,
-  }
+    () => import('../../blocks/RelatedRestaurants'),
+    {
+      ssr: true,
+    }
 );
 const Team = dynamic(() => import('../../blocks/Team'), {
   ssr: true,
@@ -43,64 +49,80 @@ const Testimonial = dynamic(() => import('../../blocks/Testimonial'), {
   ssr: true,
 });
 const RichContent = dynamic(
-  () => import('../../pages/restaurant/RichContent'),
-  {
-    ssr: true,
-  }
+    () => import('../../pages/restaurant/RichContent'),
+    {
+      ssr: true,
+    }
 );
-
+const ContactUs = dynamic(
+    () => import('../../blocks/ContactUs'),
+    {
+      ssr: true
+    })
+const Carousel = dynamic(
+    () => import('../../blocks/Carousel'),
+    {
+      ssr: false
+    }
+)
 const BlockManager = ({ blocks, contentType, pageData, type }) => {
   const router = useRouter();
   const query = router.query;
   return (
-    <div>
-      {blocks.map((block, index) => {
-        let Block;
+      <div>
+        {blocks.map((block, index) => {
+          let Block;
 
-        switch (block.__component) {
-          case 'blocks.faq':
-            Block = Faq;
-            break;
+          switch (block.__component) {
+            case 'blocks.faq':
+              Block = Faq;
+              break;
 
-          case 'blocks.hero':
-            Block = Hero;
-            break;
-          case 'blocks.cta':
-            Block = Cta;
-            break;
-          case 'blocks.team':
-            Block = Team;
-            break;
-          case 'blocks.pricing':
-            Block = Pricing;
-            break;
-          case 'blocks.features':
-            Block = Features;
-            break;
-          case 'blocks.testimonial':
-            Block = Testimonial;
-            break;
-          case 'restaurant.rich-content':
-            Block = RichContent;
-            break;
-          case 'blocks.related-articles':
-            Block = RelatedArticles;
-            break;
-          case 'blocks.cta-command-line':
-            Block = CtaCommandLine;
-            break;
-          case 'blocks.related-restaurants':
-            Block = RelatedRestaurants;
-            break;
-          case 'blocks.features-with-images':
-            Block = FeaturesWithImages;
-            break;
-        }
+            case 'blocks.hero':
+              Block = Hero;
+              break;
+            case 'blocks.cta':
+              Block = Cta;
+              break;
+            case 'blocks.team':
+              Block = Team;
+              break;
+            case 'blocks.pricing':
+              Block = Pricing;
+              break;
+            case 'blocks.features':
+              Block = Features;
+              break;
+            case 'blocks.testimonial':
+              Block = Testimonial;
+              break;
+            case 'restaurant.rich-content':
+              Block = RichContent;
+              break;
+            case 'blocks.related-articles':
+              Block = RelatedArticles;
+              break;
+            case 'blocks.cta-command-line':
+              Block = CtaCommandLine;
+              break;
+            case 'blocks.features-with-images':
+              Block = FeaturesWithImages;
+              break;
+            case 'blocks.contact-us':
+              Block = ContactUs;
+              break;
+            case 'blocks.features-centered':
+              Block = FeaturesCentered;
+              break;
+            case 'blocks.carousel':
+              Block = Carousel;
+              break;
+          }
 
-        return Block ? (
-          <div key={`index-${index}`}>
-            {type && contentType && (
-              <span className="group bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center absolute right-0 m-2 p-1.5 rounded-full dark:bg-gray-700 dark:text-blue-400">
+          return Block ? (
+              <div key={`index-${index}}`} id={`${block.__component.split('.')[1]}`}>
+                {/* {type && contentType && (
+              <span className="group bg-primary text-blue-800 text-sm font-semibold inline-flex items-center absolute right-0 m-2 p-1.5 rounded-full dark:bg-gray-700 dark:text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 h-3 m-2"
@@ -142,11 +164,9 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
                 </div>
                 {window.__NEXT_PUBLIC_API_URL && (
                   <Link
-                    href={`${
-                      window.__NEXT_PUBLIC_API_URL || 'http://localhost:1337'
-                    }/admin/content-manager/${type}/api::${contentType}.${contentType}/${
-                      pageData?.id
-                    }?plugins[i18n][locale]=${query?.lang || 'en'}`}
+                    href={`${window.__NEXT_PUBLIC_API_URL || 'http://localhost:1337'
+                      }/admin/content-manager/${type}/api::${contentType}.${contentType}/${pageData?.id
+                      }?plugins[i18n][locale]=${query?.lang || 'en'}`}
                   >
                     <a target="_blank">
                       <svg
@@ -166,13 +186,13 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
                   </Link>
                 )}
               </span>
-            )}
+            )} */}
 
-            <Block component={block.__component} {...block} />
-          </div>
-        ) : null;
-      })}
-    </div>
+                <Block component={block.__component} {...block} />
+              </div>
+          ) : null;
+        })}
+      </div>
   );
 };
 

@@ -8,7 +8,6 @@
     "description": ""
   },
   "options": {
-    "reviewWorkflows": true,
     "draftAndPublish": true
   },
   "pluginOptions": {
@@ -46,9 +45,11 @@
         "blocks.hero",
         "blocks.pricing",
         "blocks.related-articles",
-        "blocks.related-restaurants",
         "blocks.team",
-        "blocks.testimonial"
+        "blocks.testimonial",
+        "blocks.carousel",
+        "blocks.contact-us",
+        "blocks.features-centered"
       ],
       "pluginOptions": {
         "i18n": {
